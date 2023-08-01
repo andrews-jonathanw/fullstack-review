@@ -16,7 +16,7 @@ app.post('/repos', function (req, res) {
   // This route should take the github username provided
   // and get the repo information from the github API, then
   // save the repo information in the database
-  console.log('request for post from search:', req.body);
+  //console.log('request for post from search:', req.body);
   var username = req.body.username;
   getRepos.getReposByUsername(username, ({data}) => {
     // data is an array of objects
@@ -33,7 +33,7 @@ app.get('/repos', function (req, res) {
   // This route should send back the top 25 repos
   findTop.find()
     .then((repos) => {
-      console.log('sending these repos!', repos);
+      //console.log('sending these repos!', repos);
       res.send(repos);
     })
 

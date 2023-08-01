@@ -20,7 +20,7 @@ const App = () => {
 
     axios.post('/repos' , {username: term})
       .then((res) => {
-        console.log('response ', res);
+        //console.log('response ', res);
         return getUserRepos();
       })
       .catch(err => {
@@ -29,10 +29,10 @@ const App = () => {
   }
 
   const getUserRepos = () => {
-    console.log('inside getUserRepos')
+    //console.log('inside getUserRepos')
     return axios.get('/repos')
       .then(({data}) => {
-        console.log({data});
+        //console.log({data});
         setRepos({data});
       });
   }
