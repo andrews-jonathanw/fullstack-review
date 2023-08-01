@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-
-mongoose.connect('mongodb://127.0.0.1/fetcher', {useNewUrlParser: true, useUnifiedTopology: true })
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+mongoose.connect(`${process.env.MONGODB_CONNECT_URI}`, {useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log('Mongoose Database connected!');
   })
@@ -16,10 +16,8 @@ let repoSchema = mongoose.Schema({
   repo_name : String, // name of repo
   repo_owner_name: String, // string of username (owner of repo)
   repo_forks: Number,
-  repo_url : {type: String, unique: true}
+  repo_url : {type: String, unique: true},
 });
-
-
 let Repo = mongoose.model('Repo', repoSchema);
 
 
@@ -45,7 +43,7 @@ let save = (repo) => {
 }
 
 let find = () => {
-  return Repo.find().sort({repo_forks: -1}).limit(25);
+  return Repo.find().sort({repo_forks: -1, id: 1}).limit(25);
 }
 module.exports.save = save;
 module.exports.find = find;
