@@ -45,11 +45,7 @@ let save = (repo) => {
 }
 
 let find = () => {
-  return Repo.find()
-    .sort({forks: -1})
-    .limit(25)
-    .exec();
+  return Repo.find().sort({repo_forks: -1}).limit(25);
 }
-
 module.exports.save = save;
 module.exports.find = find;
